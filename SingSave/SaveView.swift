@@ -10,6 +10,7 @@ import SwiftUI
 struct SaveView: View {
     
     @Binding var saveLogs_Value: [Double]
+    @Binding var saveLogs_total: Double
     
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
@@ -17,5 +18,6 @@ struct SaveView: View {
 }
 
 #Preview {
-    SaveView(saveLogs_Value: .constant([1.1]))
+    SaveView(saveLogs_Value: .constant([100.0]),
+             saveLogs_total: .constant(100.0))
 }

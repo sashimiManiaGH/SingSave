@@ -19,5 +19,5 @@ struct SpendView: View {
 
 #Preview {
     SpendView(spendLogs_String: .constant([""]),
-              spendLogs_Value: .constant([1.1]))
+              spendLogs_Value: .constant([100.0]))
 }
