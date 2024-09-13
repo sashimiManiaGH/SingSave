@@ -19,13 +19,18 @@ struct ContentView: View {
     var body: some View {
         TabView {
             Tab("Overview", systemImage: "soccerball.inverse") {
-                OverviewView()
+                OverviewView(spendLogs_String: $spendLogs_String,
+                             spendLogs_Value: $spendLogs_Value,
+                             saveLogs_Value: $saveLogs_Value,
+                             monthlyUseGoal: $monthlyUseGoal,
+                             monthlyUsed: $monthlyUsed)
             }
             Tab("Save", systemImage: "square.and.arrow.down") {
-                SaveView()
+                SaveView(saveLogs_Value: $saveLogs_Value)
             }
             Tab("Spend", systemImage: "dollarsign.gauge.chart.lefthalf.righthalf") {
-                SpendView()
+                SpendView(spendLogs_String: $spendLogs_String,
+                          spendLogs_Value: $spendLogs_Value)
             }
             Tab("User", systemImage: "person.crop.circle") {
                 UserView()

@@ -1,5 +1,5 @@
 //
-//  SpendView .swift
+//  SpendView_Add.swift
 //  SingSave
 //
 //  Created by Leung Yin on 13/9/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SpendView: View {
+struct SpendView_Add: View {
     
     @Binding var spendLogs_String: [String]
     @Binding var spendLogs_Value: [Double]
@@ -18,6 +18,6 @@ struct SpendView: View {
 }
 
 #Preview {
-    SpendView(spendLogs_String: .constant([""]),
-              spendLogs_Value: .constant([1.1]))
+    SpendView_Add(spendLogs_String: .constant([""]),
+                  spendLogs_Value: .constant([1.1]))
 }

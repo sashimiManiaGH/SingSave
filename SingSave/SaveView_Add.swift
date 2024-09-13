@@ -1,5 +1,5 @@
 //
-//  SaveView.swift
+//  SaveView_Add.swift
 //  SingSave
 //
 //  Created by Leung Yin on 13/9/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SaveView: View {
+struct SaveView_Add: View {
     
     @Binding var saveLogs_Value: [Double]
     
@@ -17,5 +17,5 @@ struct SaveView: View {
 }
 
 #Preview {
-    SaveView(saveLogs_Value: .constant([1.1]))
+    SaveView_Add(saveLogs_Value: .constant([1.1]))
 }
