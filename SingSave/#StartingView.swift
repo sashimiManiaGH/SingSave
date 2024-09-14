@@ -11,6 +11,7 @@ struct StartingView1: View {
     
     @Binding var persistUse: Bool
     @Binding var userName: String
+    @Binding var userEmail: String
     
     var body: some View {
         NavigationStack{
@@ -41,7 +42,9 @@ struct StartingView1: View {
                 }
                 ToolbarItem(placement: .bottomBar) {
                     NavigationLink {
-                        StartingView2(persistUse: $persistUse, userName: $userName)
+                        StartingView2(persistUse: $persistUse,
+                                      userName: $userName,
+                                      userEmail: $userEmail)
                             .navigationBarBackButtonHidden()
                     } label: {
                         Image(systemName: "arrow.right")
@@ -57,6 +60,7 @@ struct StartingView2: View {
     
     @Binding var persistUse: Bool
     @Binding var userName: String
+    @Binding var userEmail: String
     
     @Environment(\.dismiss) var dismiss
     
@@ -89,7 +93,8 @@ struct StartingView2: View {
                 ToolbarItem(placement: .bottomBar) {
                     NavigationLink {
                         StartingView3(persistUse: $persistUse,
-                                      userName: $userName)
+                                      userName: $userName,
+                                      userEmail: $userEmail)
                         .navigationBarBackButtonHidden()
                     } label: {
                         Image(systemName: "arrow.right")
@@ -105,6 +110,7 @@ struct StartingView3: View {
     
     @Binding var persistUse: Bool
     @Binding var userName: String
+    @Binding var userEmail: String
     
     @Environment(\.dismiss) var dismiss
     
@@ -137,7 +143,9 @@ struct StartingView3: View {
                 ToolbarItem(placement: .bottomBar) {
                     NavigationLink {
                         StartingView4(persistUse: $persistUse,
-                                      userName: $userName)
+                                      userName: $userName,
+                                      userEmail: $userEmail)
+                        .navigationBarBackButtonHidden()
                     } label: {
                         Image(systemName: "arrow.right")
                             .bold()
@@ -152,6 +160,7 @@ struct StartingView4: View {
     
     @Binding var persistUse: Bool
     @Binding var userName: String
+    @Binding var userEmail: String
     
     @Environment(\.dismiss) var dismiss
     
@@ -189,14 +198,104 @@ struct StartingView4: View {
                     }
                 }
                 ToolbarItem(placement: .bottomBar) {
+                    if userName.isEmpty {
+                        Button {
+                            
+                        } label: {
+                            HStack {
+                                Text("Next")
+                                    .bold()
+                                Image(systemName: "arrow.right")
+                                    .bold()
+                            }
+                        }
+                        .disabled(true)
+                    } else {
+                        NavigationLink {
+                            StartingView5(persistUse: $persistUse,
+                                          userName: $userName,
+                                          userEmail: $userEmail)
+                            .navigationBarBackButtonHidden()
+                        } label: {
+                            HStack {
+                                Text("Next")
+                                    .bold()
+                                Image(systemName: "arrow.right")
+                                    .bold()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct StartingView5: View {
+    
+    @Binding var persistUse: Bool
+    @Binding var userName: String
+    @Binding var userEmail: String
+    
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        NavigationStack{
+            VStack {
+                Spacer()
+                Image(systemName: "person.crop.circle")
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .foregroundStyle(.cyan)
+                VStack {
+                    Text("Setting Up")
+                        .bold()
+                        .font(.largeTitle)
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .frame(width: 330, height: 55)
+                            .foregroundStyle(.gray)
+                        TextField("Enter your email", text: $userEmail)
+                            .padding(.horizontal, 50)
+                            .font(.title2)
+                            .foregroundStyle(.white)
+                            .keyboardType(.emailAddress)
+                    }
+                }
+                Spacer()
+            }
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
                     Button {
-                        persistUse = true
+                        dismiss()
                     } label: {
-                        HStack {
-                            Text("Continue")
-                                .bold()
-                            Image(systemName: "arrow.right")
-                                .bold()
+                        Image(systemName: "arrow.left")
+                            .bold()
+                    }
+                }
+                ToolbarItem(placement: .bottomBar) {
+                    if userEmail.isEmpty {
+                        Button {
+                            persistUse = true
+                        } label: {
+                            HStack {
+                                Text("Continue to app")
+                                    .bold()
+                                Image(systemName: "arrow.right")
+                                    .bold()
+                            }
+                        }
+                        .disabled(true)
+                    } else {
+                        Button {
+                            persistUse = true
+                        } label: {
+                            HStack {
+                                Text("Continue to app")
+                                    .bold()
+                                Image(systemName: "arrow.right")
+                                    .bold()
+                            }
                         }
                     }
                 }
@@ -207,5 +306,6 @@ struct StartingView4: View {
 
 #Preview {
     StartingView1(persistUse: .constant(false),
-                 userName: .constant("Test User"))
+                  userName: .constant("Test User"),
+                  userEmail: .constant("test@icloud.com"))
 }

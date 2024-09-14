@@ -24,23 +24,28 @@ struct ContentView: View {
     
     @AppStorage("signinPersist") var persistUse = false
     @AppStorage("user_name") var userName = ""
+    @AppStorage("user_email") var userEmail = ""
     
     var body: some View {
         if persistUse == false {
             StartingView1(persistUse: $persistUse,
-                         userName: $userName)
+                         userName: $userName,
+                          userEmail: $userEmail)
         } else {
             TabView {
                 Tab("Overview", systemImage: "soccerball.inverse") {
                     OverviewView(spendLogs_String: $spendLogs_String,
                                  spendLogs_Value: $spendLogs_Value,
+                                 spendLogs_Date: $spendLogs_Date,
                                  saveLogs_Value: $saveLogs_Value,
                                  saveLogs_total: $saveLogs_Total,
+                                 saveLogs_Date: $saveLogs_Date,
                                  saveGoals: $saveGoals,
                                  monthlyUseGoal: $monthlyUseGoal,
                                  monthlyUsed: $monthlyUsed,
                                  persistUse: $persistUse,
-                                 userName: $userName)
+                                 userName: $userName,
+                                 userEmail: $userEmail)
                 }
                 Tab("Save", systemImage: "square.and.arrow.down") {
                     SaveView(saveLogs_Value: $saveLogs_Value,

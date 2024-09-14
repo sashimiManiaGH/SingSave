@@ -13,14 +13,17 @@ struct OverviewView: View {
     
     @Binding var spendLogs_String: [String]
     @Binding var spendLogs_Value: [Double]
+    @Binding var spendLogs_Date: [Date]
     @Binding var saveLogs_Value: [Double]
     @Binding var saveLogs_total: Double
+    @Binding var saveLogs_Date: [Date]
     @Binding var saveGoals: Double
     @Binding var monthlyUseGoal: Double
     @Binding var monthlyUsed: Double
     
     @Binding var persistUse: Bool
     @Binding var userName: String
+    @Binding var userEmail: String
     
     var body: some View {
         NavigationStack {
@@ -97,17 +100,28 @@ struct OverviewView: View {
                 }
                 .navigationTitle("Overview")
                 .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
+                    ToolbarItem(placement: .topBarTrailing) {
                         Button {
                             showUserView = true
                         } label: {
-                            Image(systemName: "gear")
+                            Image(systemName: "person.crop.circle")
                                 .font(.title2)
                         }
                     }
                 }
                 .sheet(isPresented: $showUserView) {
-                    UserView()
+                    UserView(spendLogs_String: $spendLogs_String,
+                             spendLogs_Value: $spendLogs_Value,
+                             spendLogs_Date: $spendLogs_Date,
+                             saveLogs_Value: $saveLogs_Value,
+                             saveLogs_Date: $saveLogs_Date,
+                             saveLogs_total: $saveLogs_total,
+                             saveGoals: $saveGoals,
+                             monthlyUseGoal: $monthlyUseGoal,
+                             monthlyUsed: $monthlyUsed,
+                             persistUse: $persistUse,
+                             userName: $userName,
+                             userEmail: $userEmail)
                 }
             }
         }
@@ -117,11 +131,14 @@ struct OverviewView: View {
 #Preview {
     OverviewView(spendLogs_String: .constant([]),
                  spendLogs_Value: .constant([100.0]),
+                 spendLogs_Date: .constant([]),
                  saveLogs_Value: .constant([100.0]),
                  saveLogs_total: .constant(50.0),
+                 saveLogs_Date: .constant([]),
                  saveGoals: .constant(100.0),
                  monthlyUseGoal: .constant(1000.0),
                  monthlyUsed: .constant(100.0),
                  persistUse: .constant(true),
-                 userName: .constant("Test User"))
+                 userName: .constant("Test User"),
+                 userEmail: .constant("test@icloud.com"))
 }
