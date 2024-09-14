@@ -31,7 +31,8 @@ struct ContentView: View {
             }
             Tab("Save", systemImage: "square.and.arrow.down") {
                 SaveView(saveLogs_Value: $saveLogs_Value,
-                         saveLogs_total: $saveLogs_Total)
+                         saveLogs_total: $saveLogs_Total,
+                         saveGoals: $saveGoals)
             }
             Tab("Spend", systemImage: "dollarsign.gauge.chart.lefthalf.righthalf") {
                 SpendView(spendLogs_String: $spendLogs_String,

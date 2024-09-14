@@ -18,6 +18,6 @@ struct SpendView_Add: View {
 }
 
 #Preview {
-    SpendView_Add(spendLogs_String: .constant([""]),
+    SpendView_Add(spendLogs_String: .constant([]),
                   spendLogs_Value: .constant([100.0]))
 }

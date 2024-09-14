@@ -56,13 +56,13 @@ struct OverviewView: View {
                 }
                 ZStack {
                     RoundedRectangle(cornerRadius: 25)
-                        .frame(width: 350, height: 120)
+                        .frame(width: 350, height: 150)
                         .foregroundStyle(.gray)
                         .opacity(0.7)
                         .shadow(radius: 40)
                     VStack {
                         HStack {
-                            Text("Saved: $\(saveLogs_total, specifier: "%.2f")")
+                            Text("Saved: $\(saveLogs_total, specifier: "%.2f")/$\(saveGoals, specifier: "%.2f")")
                                 .bold()
                                 .font(.title)
                             Spacer()
@@ -87,17 +87,30 @@ struct OverviewView: View {
                         }
                     }
                 }
-                HStack {
-                    Text("Expenditures")
-                        .bold()
-                        .font(.title2)
-                    Spacer()
+                VStack {
+                    HStack {
+                        Text("Recent Expenditures")
+                            .bold()
+                            .font(.title2)
+                        Spacer()
+                    }
+                    .padding(.horizontal, 28)
+                    .padding(.top)
+                    if spendLogs_String == [] {
+                        List {
+                            Text("No Recent Expenditures")
+                        }
+                    } else {
+                        List(spendLogs_String, id: \.self) { spendLog in
+                            VStack {
+                                Text(spendLog)
+                                    .bold()
+                                Text("$\(spendLogs_Value[spendLogs_String.firstIndex(of: spendLog)!])")
+                            }
+                        }
+                    }
                 }
-                .padding(.horizontal, 28)
-                .padding(.top)
-                List {
-                    
-                }
+                Spacer()
             }
             .navigationTitle("Overview")
         }
@@ -105,7 +118,7 @@ struct OverviewView: View {
 }
 
 #Preview {
-    OverviewView(spendLogs_String: .constant([""]),
+    OverviewView(spendLogs_String: .constant([]),
                  spendLogs_Value: .constant([100.0]),
                  saveLogs_Value: .constant([100.0]),
                  saveLogs_total: .constant(50.0),
