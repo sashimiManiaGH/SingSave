@@ -12,6 +12,7 @@ struct ContentView: View {
     
     @Persistent("spendLogs_String") var spendLogs_String: [String] = []
     @Persistent("spendLogs_Value") var spendLogs_Value: [Double] = []
+    @Persistent("spendLogs_Date") var spendLogs_Date: [Date] = []
     
     @Persistent("saveLogs_Value") var saveLogs_Value: [Double] = []
     @Persistent("saveLogs_Date") var saveLogs_Date: [Date] = []
@@ -41,6 +42,7 @@ struct ContentView: View {
             Tab("Expenditures", systemImage: "dollarsign.gauge.chart.lefthalf.righthalf") {
                 ExpenditureView(spendLogs_String: $spendLogs_String,
                           spendLogs_Value: $spendLogs_Value,
+                                spendLogs_Date: $spendLogs_Date,
                           monthlyUseGoal: $monthlyUseGoal,
                           monthlyUsed: $monthlyUsed)
             }

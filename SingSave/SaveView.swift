@@ -65,11 +65,23 @@ struct SaveView: View {
                                 Text("Amount: ")
                                     .bold()
                                 Text("$\(String(saveLogs_Value[saveLogs_Date.firstIndex(of: log)!]))")
+                                Spacer()
                             }
                             HStack {
                                 Text("Date: ")
                                     .bold()
                                 Text("\(log.formatted(date: .complete, time: .omitted))")
+                                Spacer()
+                            }
+                        }
+                        .swipeActions {
+                            Button {
+                                saveLogs_total -= saveLogs_Value[saveLogs_Date.firstIndex(of: log)!]
+                                saveLogs_Value.remove(at: saveLogs_Date.firstIndex(of: log)!)
+                                saveLogs_Date.remove(at: saveLogs_Date.firstIndex(of: log)!)
+                            } label: {
+                                Image(systemName: "trash")
+                                    .tint(.red)
                             }
                         }
                     }

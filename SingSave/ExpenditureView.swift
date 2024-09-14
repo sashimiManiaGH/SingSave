@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ExpenditureView: View {
     
+    @State private var showAddSheet = false
+    
     @Binding var spendLogs_String: [String]
     @Binding var spendLogs_Value: [Double]
+    @Binding var spendLogs_Date: [Date]
     @Binding var monthlyUseGoal: Double
     @Binding var monthlyUsed: Double
     
@@ -48,19 +51,75 @@ struct ExpenditureView: View {
                         Text("$\(monthlyUseGoal, specifier: "%.2f")")
                             .bold()
                             .font(.title)
-
+                        
                     }
                 }
-                
+                if spendLogs_String == [] {
+                    List {
+                        Text("No expenditures yet!")
+                    }
+                } else {
+                    List(spendLogs_String, id: \.self) { log in
+                        VStack {
+                            HStack {
+                                Text("Expenditure: ")
+                                    .bold()
+                                Text(log)
+                                Spacer()
+                            }
+                            HStack {
+                                Text("Amount: ")
+                                    .bold()
+                                Text("$\(spendLogs_Value[spendLogs_String.firstIndex(of: log)!], specifier: "%.2f")")
+                                Spacer()
+                            }
+                            HStack {
+                                Text("Date: ")
+                                    .bold()
+                                Text("\(spendLogs_Date[spendLogs_String.firstIndex(of: log)!].formatted(date: .complete, time: .omitted))")
+                                Spacer()
+                            }
+                        }
+                        .swipeActions {
+                            Button {
+                                monthlyUsed -= spendLogs_Value[spendLogs_String.firstIndex(of: log)!]
+                                spendLogs_Value.remove(at: spendLogs_String.firstIndex(of: log)!)
+                                spendLogs_Date.remove(at: spendLogs_String.firstIndex(of: log)!)
+                                spendLogs_String.remove(at: spendLogs_String.firstIndex(of: log)!)
+                            } label: {
+                                Image(systemName: "trash")
+                                    .tint(.red)
+                            }
+                        }
+                    }
+                }
             }
             .navigationTitle("Expenditures")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showAddSheet = true
+                    } label: {
+                        Image(systemName: "plus")
+                            .bold()
+                    }
+                }
+            }
+            .sheet(isPresented: $showAddSheet) {
+                ExpenditureView_Add(spendLogs_String: $spendLogs_String,
+                                    spendLogs_Value: $spendLogs_Value,
+                                    spendLogs_Date: $spendLogs_Date,
+                                    monthlyUsed: $monthlyUsed)
+                .presentationDetents([.height(600), .large])
+            }
         }
     }
 }
 
 #Preview {
     ExpenditureView(spendLogs_String: .constant([]),
-              spendLogs_Value: .constant([100.0]),
-              monthlyUseGoal: .constant(1000.0),
-              monthlyUsed: .constant(300.0))
+                    spendLogs_Value: .constant([]),
+                    spendLogs_Date: .constant([]),
+                    monthlyUseGoal: .constant(1000.0),
+                    monthlyUsed: .constant(300.0))
 }

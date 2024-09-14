@@ -51,7 +51,7 @@ struct OverviewView: View {
                         Text("$\(monthlyUseGoal, specifier: "%.2f")")
                             .bold()
                             .font(.title)
-
+                        
                     }
                 }
                 ZStack {
