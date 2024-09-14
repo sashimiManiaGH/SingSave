@@ -22,32 +22,39 @@ struct ContentView: View {
     @Persistent("monthlyGoal") var monthlyUseGoal: Double = 1000
     @Persistent("monthlyUse") var monthlyUsed: Double = 0
     
+    @AppStorage("signinPersist") var persistUse = false
+    @AppStorage("user_name") var userName = ""
+    
     var body: some View {
-        TabView {
-            Tab("Overview", systemImage: "soccerball.inverse") {
-                OverviewView(spendLogs_String: $spendLogs_String,
-                             spendLogs_Value: $spendLogs_Value,
-                             saveLogs_Value: $saveLogs_Value,
+        if persistUse == false {
+            StartingView1(persistUse: $persistUse,
+                         userName: $userName)
+        } else {
+            TabView {
+                Tab("Overview", systemImage: "soccerball.inverse") {
+                    OverviewView(spendLogs_String: $spendLogs_String,
+                                 spendLogs_Value: $spendLogs_Value,
+                                 saveLogs_Value: $saveLogs_Value,
+                                 saveLogs_total: $saveLogs_Total,
+                                 saveGoals: $saveGoals,
+                                 monthlyUseGoal: $monthlyUseGoal,
+                                 monthlyUsed: $monthlyUsed,
+                                 persistUse: $persistUse,
+                                 userName: $userName)
+                }
+                Tab("Save", systemImage: "square.and.arrow.down") {
+                    SaveView(saveLogs_Value: $saveLogs_Value,
+                             saveLogs_Date: $saveLogs_Date,
                              saveLogs_total: $saveLogs_Total,
-                             saveGoals: $saveGoals,
-                             monthlyUseGoal: $monthlyUseGoal,
-                             monthlyUsed: $monthlyUsed)
-            }
-            Tab("Save", systemImage: "square.and.arrow.down") {
-                SaveView(saveLogs_Value: $saveLogs_Value,
-                         saveLogs_Date: $saveLogs_Date,
-                         saveLogs_total: $saveLogs_Total,
-                         saveGoals: $saveGoals)
-            }
-            Tab("Expenditures", systemImage: "dollarsign.gauge.chart.lefthalf.righthalf") {
-                ExpenditureView(spendLogs_String: $spendLogs_String,
-                          spendLogs_Value: $spendLogs_Value,
-                                spendLogs_Date: $spendLogs_Date,
-                          monthlyUseGoal: $monthlyUseGoal,
-                          monthlyUsed: $monthlyUsed)
-            }
-            Tab("User", systemImage: "person.crop.circle") {
-                UserView()
+                             saveGoals: $saveGoals)
+                }
+                Tab("Expenditures", systemImage: "dollarsign.gauge.chart.lefthalf.righthalf") {
+                    ExpenditureView(spendLogs_String: $spendLogs_String,
+                                    spendLogs_Value: $spendLogs_Value,
+                                    spendLogs_Date: $spendLogs_Date,
+                                    monthlyUseGoal: $monthlyUseGoal,
+                                    monthlyUsed: $monthlyUsed)
+                }
             }
         }
     }

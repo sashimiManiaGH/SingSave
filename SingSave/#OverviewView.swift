@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OverviewView: View {
     
+    @State private var showUserView = false
+    
     @Binding var spendLogs_String: [String]
     @Binding var spendLogs_Value: [Double]
     @Binding var saveLogs_Value: [Double]
@@ -16,6 +18,9 @@ struct OverviewView: View {
     @Binding var saveGoals: Double
     @Binding var monthlyUseGoal: Double
     @Binding var monthlyUsed: Double
+    
+    @Binding var persistUse: Bool
+    @Binding var userName: String
     
     var body: some View {
         NavigationStack {
@@ -91,6 +96,19 @@ struct OverviewView: View {
                     Spacer()
                 }
                 .navigationTitle("Overview")
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            showUserView = true
+                        } label: {
+                            Image(systemName: "gear")
+                                .font(.title2)
+                        }
+                    }
+                }
+                .sheet(isPresented: $showUserView) {
+                    UserView()
+                }
             }
         }
     }
@@ -103,5 +121,7 @@ struct OverviewView: View {
                  saveLogs_total: .constant(50.0),
                  saveGoals: .constant(100.0),
                  monthlyUseGoal: .constant(1000.0),
-                 monthlyUsed: .constant(100.0))
+                 monthlyUsed: .constant(100.0),
+                 persistUse: .constant(true),
+                 userName: .constant("Test User"))
 }
