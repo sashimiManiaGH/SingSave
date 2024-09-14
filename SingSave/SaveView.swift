@@ -64,12 +64,12 @@ struct SaveView: View {
                             HStack {
                                 Text("Amount: ")
                                     .bold()
-                                Text("\(String(saveLogs_Value[saveLogs_Date.firstIndex(of: log)!]))")
+                                Text("$\(String(saveLogs_Value[saveLogs_Date.firstIndex(of: log)!]))")
                             }
                             HStack {
                                 Text("Date: ")
                                     .bold()
-                                Text("\(log)")
+                                Text("\(log.formatted(date: .complete, time: .omitted))")
                             }
                         }
                     }
@@ -90,6 +90,7 @@ struct SaveView: View {
                 SaveView_Add(saveLogs_Value: $saveLogs_Value,
                              saveLogs_Date: $saveLogs_Date,
                              saveLogs_total: $saveLogs_total)
+                .presentationDetents([.height(600), .large])
             }
         }
     }
