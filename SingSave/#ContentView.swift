@@ -38,9 +38,11 @@ struct ContentView: View {
                          saveLogs_total: $saveLogs_Total,
                          saveGoals: $saveGoals)
             }
-            Tab("Spend", systemImage: "dollarsign.gauge.chart.lefthalf.righthalf") {
-                SpendView(spendLogs_String: $spendLogs_String,
-                          spendLogs_Value: $spendLogs_Value)
+            Tab("Expenditures", systemImage: "dollarsign.gauge.chart.lefthalf.righthalf") {
+                ExpenditureView(spendLogs_String: $spendLogs_String,
+                          spendLogs_Value: $spendLogs_Value,
+                          monthlyUseGoal: $monthlyUseGoal,
+                          monthlyUsed: $monthlyUsed)
             }
             Tab("User", systemImage: "person.crop.circle") {
                 UserView()

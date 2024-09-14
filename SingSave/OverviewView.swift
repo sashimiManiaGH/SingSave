@@ -28,7 +28,7 @@ struct OverviewView: View {
                         .shadow(radius: 40)
                     ZStack {
                         Circle()
-                            .trim(from: 0, to: monthlyUsed)
+                            .trim(from: 0, to: 1)
                             .stroke(
                                 AngularGradient(
                                     gradient: Gradient(colors: [Color.red, Color.purple]),
