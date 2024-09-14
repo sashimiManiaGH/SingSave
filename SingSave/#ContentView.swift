@@ -12,9 +12,12 @@ struct ContentView: View {
     
     @Persistent("spendLogs_String") var spendLogs_String: [String] = []
     @Persistent("spendLogs_Value") var spendLogs_Value: [Double] = []
+    
     @Persistent("saveLogs_Value") var saveLogs_Value: [Double] = []
+    @Persistent("saveLogs_Date") var saveLogs_Date: [Date] = []
     @Persistent("saveLogs_total") var saveLogs_Total: Double = 0
     @Persistent("saveGoals") var saveGoals: Double = 200
+    
     @Persistent("monthlyGoal") var monthlyUseGoal: Double = 1000
     @Persistent("monthlyUse") var monthlyUsed: Double = 0
     
@@ -31,6 +34,7 @@ struct ContentView: View {
             }
             Tab("Save", systemImage: "square.and.arrow.down") {
                 SaveView(saveLogs_Value: $saveLogs_Value,
+                         saveLogs_Date: $saveLogs_Date,
                          saveLogs_total: $saveLogs_Total,
                          saveGoals: $saveGoals)
             }
