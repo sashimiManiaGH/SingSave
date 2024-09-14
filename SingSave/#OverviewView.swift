@@ -36,17 +36,29 @@ struct OverviewView: View {
                             .opacity(0.7)
                             .shadow(radius: 40)
                         ZStack {
-                            Circle()
-                                .trim(from: 0, to: 1)
-                                .stroke(
-                                    AngularGradient(
-                                        gradient: Gradient(colors: [Color.red, Color.purple]),
-                                        center: .center,
-                                        startAngle: .degrees(0),
-                                        endAngle: .degrees(360)
-                                    ),
-                                    style: StrokeStyle(lineWidth: 30, lineCap: .round)
-                                )
+                            ZStack {
+                                Circle()
+                                    .trim(from: 0, to: 100)
+                                    .stroke(
+                                        Color.gray,
+                                        style: StrokeStyle(
+                                            lineWidth: 45,
+                                            lineCap: .round
+                                        )
+                                    )   .rotationEffect(.degrees(0))
+                                    .animation(.easeOut, value: monthlyUsed/monthlyUseGoal)
+                                Circle()
+                                    .trim(from: 0, to: monthlyUsed/monthlyUseGoal)
+                                    .stroke(
+                                        Gradient(colors: [.red, .purple]),
+                                        style: StrokeStyle(
+                                            lineWidth: 45,
+                                            lineCap: .round
+                                        )
+                                    )   .rotationEffect(.degrees(-90))
+                                    .animation(.easeOut, value: monthlyUsed/monthlyUseGoal)
+                            }
+                            .padding()
                         }
                         .frame(width: 270, height: 270)
                         VStack {

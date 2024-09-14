@@ -28,16 +28,25 @@ struct ExpenditureView: View {
                         .shadow(radius: 40)
                     ZStack {
                         Circle()
-                            .trim(from: 0, to: 1)
+                            .trim(from: 0, to: 100)
                             .stroke(
-                                AngularGradient(
-                                    gradient: Gradient(colors: [Color.red, Color.purple]),
-                                    center: .center,
-                                    startAngle: .degrees(0),
-                                    endAngle: .degrees(360)
-                                ),
-                                style: StrokeStyle(lineWidth: 30, lineCap: .round)
-                            )
+                                Color.gray,
+                                style: StrokeStyle(
+                                    lineWidth: 45,
+                                    lineCap: .round
+                                )
+                            )   .rotationEffect(.degrees(0))
+                            .animation(.easeOut, value: monthlyUsed/monthlyUseGoal)
+                        Circle()
+                            .trim(from: 0, to: monthlyUsed/monthlyUseGoal)
+                            .stroke(
+                                Gradient(colors: [.red, .purple]),
+                                style: StrokeStyle(
+                                    lineWidth: 45,
+                                    lineCap: .round
+                                )
+                            )   .rotationEffect(.degrees(-90))
+                            .animation(.easeOut, value: monthlyUsed/monthlyUseGoal)
                     }
                     .frame(width: 270, height: 270)
                     VStack {
