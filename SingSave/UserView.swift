@@ -10,6 +10,8 @@ import SwiftUI
 struct UserView: View {
     
     @State private var alertShow = false
+    @State private var changeMonthGoalSheetShow = false
+    @State private var changeSaveGoalSheetShow = false
     
     @Binding var spendLogs_String: [String]
     @Binding var spendLogs_Value: [Double]
@@ -60,16 +62,26 @@ struct UserView: View {
                             Text("Monthly Use Budget: $\(monthlyUseGoal, specifier: "%.2f")")
                                 .bold()
                             Spacer()
+                            Button {
+                                changeMonthGoalSheetShow = true
+                            } label: {
+                                Image(systemName: "pencil")
+                            }
                         }
-                        Stepper("", value: $monthlyUseGoal, in: 1...10000, step: 1)
+                        //                        Stepper("", value: $monthlyUseGoal, in: 1...10000, step: 1)
                     }
                     VStack {
                         HStack {
                             Text("Monthly Savings Goa: $\(saveGoals, specifier: "%.2f")")
                                 .bold()
                             Spacer()
+                            Button {
+                                changeSaveGoalSheetShow = true
+                            } label: {
+                                Image(systemName: "pencil")
+                            }
                         }
-                        Stepper("", value: $saveGoals, in: 1...10000, step: 1)
+                        //                        Stepper("", value: $saveGoals, in: 1...10000, step: 1)
                     }
                 }
                 Section {
@@ -98,6 +110,12 @@ struct UserView: View {
                         persistUse = false
                     }
                 }
+            }
+            .sheet(isPresented: $changeMonthGoalSheetShow) {
+                UserChangeView_Budget(monthlyUseGoal: $monthlyUseGoal, saveGoals: $saveGoals)
+            }
+            .sheet(isPresented: $changeSaveGoalSheetShow) {
+                UserChangeView_Save(monthlyUseGoal: $monthlyUseGoal, saveGoals: $saveGoals)
             }
         }
     }
