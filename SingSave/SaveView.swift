@@ -27,7 +27,7 @@ struct SaveView: View {
                         .shadow(radius: 40)
                     VStack {
                         HStack {
-                            Text("Saved: $\(saveLogs_total, specifier: "%.2f")/$\(saveGoals, specifier: "%.2f")")
+                            Text("Saved:\n$\(saveLogs_total, specifier: "%.2f")/$\(saveGoals, specifier: "%.2f")")
                                 .bold()
                                 .font(.title)
                             Spacer()
@@ -46,6 +46,7 @@ struct SaveView: View {
                                         colors: [.red, .purple],
                                         startPoint: .leading,
                                         endPoint: .trailing))
+                                    .animation(.easeOut, value: 330*(saveLogs_total/saveGoals))
                             } else {
                                 RoundedRectangle(cornerRadius: 25)
                                     .frame(width: 330, height: 40)
