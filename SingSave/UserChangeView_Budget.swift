@@ -53,6 +53,37 @@ struct UserChangeView_Save: View {
     }
 }
 
+struct UserChangeView_Username_Email: View {
+    
+    @State private var changeName = ""
+    @State private var changeEmail = ""
+    
+    @Binding var userName: String
+    @Binding var userEmail: String
+    
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        List {
+            Text("Change Your Username & Email:")
+                .bold()
+            TextField("Type a valid username", text: $changeName)
+            TextField("Type a valid email", text: $changeEmail)
+            Button("Update Details") {
+                if userEmail.contains("@") {
+                    userName = changeName
+                    userEmail = changeEmail
+                    dismiss()
+                }
+            }
+        }
+        .onAppear() {
+            changeName = userName
+            changeEmail = userEmail
+        }
+    }
+}
+
 #Preview {
     UserChangeView_Budget(monthlyUseGoal: .constant(100.0), saveGoals: .constant(100.0))
 }

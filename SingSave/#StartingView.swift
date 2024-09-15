@@ -274,7 +274,7 @@ struct StartingView5: View {
                     }
                 }
                 ToolbarItem(placement: .bottomBar) {
-                    if userEmail.isEmpty {
+                    if userEmail.contains("@") {
                         Button {
                             persistUse = true
                         } label: {
@@ -285,7 +285,6 @@ struct StartingView5: View {
                                     .bold()
                             }
                         }
-                        .disabled(true)
                     } else {
                         Button {
                             persistUse = true
@@ -297,6 +296,7 @@ struct StartingView5: View {
                                     .bold()
                             }
                         }
+                        .disabled(true)
                     }
                 }
             }

@@ -12,6 +12,7 @@ struct UserView: View {
     @State private var alertShow = false
     @State private var changeMonthGoalSheetShow = false
     @State private var changeSaveGoalSheetShow = false
+    @State private var changeUserGoalSheetShow = false
     
     @Binding var spendLogs_String: [String]
     @Binding var spendLogs_Value: [Double]
@@ -54,6 +55,12 @@ struct UserView: View {
                                 .padding(.horizontal)
                             Spacer()
                         }
+                    }
+                    Spacer()
+                    Button {
+                        changeUserGoalSheetShow = true
+                    } label: {
+                        Image(systemName: "pencil")
                     }
                 }
                 Section {
@@ -116,6 +123,9 @@ struct UserView: View {
             }
             .sheet(isPresented: $changeSaveGoalSheetShow) {
                 UserChangeView_Save(monthlyUseGoal: $monthlyUseGoal, saveGoals: $saveGoals)
+            }
+            .sheet(isPresented: $changeUserGoalSheetShow) {
+                UserChangeView_Username_Email(userName: $userName, userEmail: $userEmail)
             }
         }
     }
