@@ -34,7 +34,7 @@ struct SaveView_Add: View {
                     .datePickerStyle(.graphical)
             }
             Button {
-                saveLogs_Value.append(tempSaveValue)
+                saveLogs_Value.append(round(tempSaveValue * 100) / 100.0)
                 saveLogs_Date.append(tempDate)
                 saveLogs_total += tempSaveValue
                 dismiss()

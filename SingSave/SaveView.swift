@@ -64,7 +64,7 @@ struct SaveView: View {
                             HStack {
                                 Text("Amount: ")
                                     .bold()
-                                Text("$\(String(saveLogs_Value[saveLogs_Date.firstIndex(of: log)!]))")
+                                Text("$\(saveLogs_Value[saveLogs_Date.firstIndex(of: log)!], specifier: "%.2f")")
                                 Spacer()
                             }
                             HStack {
