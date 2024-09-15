@@ -36,29 +36,26 @@ struct OverviewView: View {
                             .opacity(0.7)
                             .shadow(radius: 40)
                         ZStack {
-                            ZStack {
-                                Circle()
-                                    .trim(from: 0, to: 100)
-                                    .stroke(
-                                        Color.gray,
-                                        style: StrokeStyle(
-                                            lineWidth: 45,
-                                            lineCap: .round
-                                        )
-                                    )   .rotationEffect(.degrees(0))
-                                    .animation(.easeOut, value: monthlyUsed/monthlyUseGoal)
-                                Circle()
-                                    .trim(from: 0, to: monthlyUsed/monthlyUseGoal)
-                                    .stroke(
-                                        Gradient(colors: [.red, .purple]),
-                                        style: StrokeStyle(
-                                            lineWidth: 45,
-                                            lineCap: .round
-                                        )
-                                    )   .rotationEffect(.degrees(-90))
-                                    .animation(.easeOut, value: monthlyUsed/monthlyUseGoal)
-                            }
-                            .padding()
+                            Circle()
+                                .trim(from: 0, to: 100)
+                                .stroke(
+                                    Color.gray,
+                                    style: StrokeStyle(
+                                        lineWidth: 45,
+                                        lineCap: .round
+                                    )
+                                )   .rotationEffect(.degrees(0))
+                                .animation(.easeOut, value: monthlyUsed/monthlyUseGoal)
+                            Circle()
+                                .trim(from: 0, to: monthlyUsed/monthlyUseGoal)
+                                .stroke(
+                                    Gradient(colors: [.red, .purple]),
+                                    style: StrokeStyle(
+                                        lineWidth: 45,
+                                        lineCap: .round
+                                    )
+                                )   .rotationEffect(.degrees(-90))
+                                .animation(.easeOut, value: monthlyUsed/monthlyUseGoal)
                         }
                         .frame(width: 270, height: 270)
                         VStack {
