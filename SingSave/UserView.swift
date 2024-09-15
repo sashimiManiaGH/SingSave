@@ -28,6 +28,11 @@ struct UserView: View {
     @Binding var userName: String
     @Binding var userEmail: String
     
+    func initials(from string: String) -> String {
+        let words = string.components(separatedBy: .whitespacesAndNewlines)
+        return words.map { $0.prefix(1).uppercased() }.joined(separator: "")
+    }
+    
     var body: some View {
         NavigationStack {
             List {
@@ -36,7 +41,12 @@ struct UserView: View {
                         Circle()
                             .frame(width: 90, height: 90)
                             .foregroundStyle(.gray)
-                        Text("\(userName.prefix(2).uppercased())")
+                        //                        Text("\(userName.prefix(2).uppercased())")
+                        //                            .bold()
+                        //                            .font(.largeTitle)
+                        //                            .foregroundStyle(.white)
+                        let initials = initials(from: userName)
+                        Text("\(initials)")
                             .bold()
                             .font(.largeTitle)
                             .foregroundStyle(.white)
