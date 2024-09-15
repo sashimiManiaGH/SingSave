@@ -69,12 +69,19 @@ struct UserChangeView_Username_Email: View {
                 .bold()
             TextField("Type a valid username", text: $changeName)
             TextField("Type a valid email", text: $changeEmail)
-            Button("Update Details") {
-                if userEmail.contains("@") {
+            if changeEmail.contains("@") && changeName != "" {
+                Button("Update Details") {
                     userName = changeName
                     userEmail = changeEmail
                     dismiss()
                 }
+            } else {
+                Button("Update Details") {
+                    userName = changeName
+                    userEmail = changeEmail
+                    dismiss()
+                }
+                .disabled(true)
             }
         }
         .onAppear() {

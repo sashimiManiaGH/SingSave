@@ -26,10 +26,15 @@ struct ContentView: View {
     @AppStorage("user_name") var userName = ""
     @AppStorage("user_email") var userEmail = ""
     
+    @AppStorage("old_timestamp") var oldTimeStamp = Date()
+    @AppStorage("new_timestamp") var newTimeStamp = Date()
+    
     var body: some View {
         if persistUse == false {
             StartingView1(persistUse: $persistUse,
-                         userName: $userName,
+                          oldTime: $newTimeStamp,
+                          newTime: $oldTimeStamp,
+                          userName: $userName,
                           userEmail: $userEmail)
         } else {
             TabView {
@@ -59,6 +64,16 @@ struct ContentView: View {
                                     spendLogs_Date: $spendLogs_Date,
                                     monthlyUseGoal: $monthlyUseGoal,
                                     monthlyUsed: $monthlyUsed)
+                }
+            }
+            .onAppear() {
+                oldTimeStamp = newTimeStamp
+                newTimeStamp = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "M"
+                if dateFormatter.string(from: newTimeStamp) != dateFormatter.string(from: oldTimeStamp) {
+                    saveLogs_Total = 0
+                    monthlyUsed = 0
                 }
             }
         }

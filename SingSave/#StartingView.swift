@@ -10,6 +10,8 @@ import SwiftUI
 struct StartingView1: View {
     
     @Binding var persistUse: Bool
+    @Binding var oldTime: Date
+    @Binding var newTime: Date
     @Binding var userName: String
     @Binding var userEmail: String
     
@@ -43,6 +45,8 @@ struct StartingView1: View {
                 ToolbarItem(placement: .bottomBar) {
                     NavigationLink {
                         StartingView2(persistUse: $persistUse,
+                                      oldTime: $newTime,
+                                      newTime: $oldTime,
                                       userName: $userName,
                                       userEmail: $userEmail)
                             .navigationBarBackButtonHidden()
@@ -59,6 +63,8 @@ struct StartingView1: View {
 struct StartingView2: View {
     
     @Binding var persistUse: Bool
+    @Binding var oldTime: Date
+    @Binding var newTime: Date
     @Binding var userName: String
     @Binding var userEmail: String
     
@@ -93,6 +99,8 @@ struct StartingView2: View {
                 ToolbarItem(placement: .bottomBar) {
                     NavigationLink {
                         StartingView3(persistUse: $persistUse,
+                                      oldTime: $newTime,
+                                      newTime: $oldTime,
                                       userName: $userName,
                                       userEmail: $userEmail)
                         .navigationBarBackButtonHidden()
@@ -109,6 +117,8 @@ struct StartingView2: View {
 struct StartingView3: View {
     
     @Binding var persistUse: Bool
+    @Binding var oldTime: Date
+    @Binding var newTime: Date
     @Binding var userName: String
     @Binding var userEmail: String
     
@@ -143,6 +153,8 @@ struct StartingView3: View {
                 ToolbarItem(placement: .bottomBar) {
                     NavigationLink {
                         StartingView4(persistUse: $persistUse,
+                                      oldTime: $newTime,
+                                      newTime: $oldTime,
                                       userName: $userName,
                                       userEmail: $userEmail)
                         .navigationBarBackButtonHidden()
@@ -159,6 +171,8 @@ struct StartingView3: View {
 struct StartingView4: View {
     
     @Binding var persistUse: Bool
+    @Binding var oldTime: Date
+    @Binding var newTime: Date
     @Binding var userName: String
     @Binding var userEmail: String
     
@@ -213,6 +227,8 @@ struct StartingView4: View {
                     } else {
                         NavigationLink {
                             StartingView5(persistUse: $persistUse,
+                                          oldTime: $newTime,
+                                          newTime: $oldTime,
                                           userName: $userName,
                                           userEmail: $userEmail)
                             .navigationBarBackButtonHidden()
@@ -234,6 +250,8 @@ struct StartingView4: View {
 struct StartingView5: View {
     
     @Binding var persistUse: Bool
+    @Binding var oldTime: Date
+    @Binding var newTime: Date
     @Binding var userName: String
     @Binding var userEmail: String
     
@@ -277,6 +295,7 @@ struct StartingView5: View {
                     if userEmail.contains("@") {
                         Button {
                             persistUse = true
+                            newTime = Date()
                         } label: {
                             HStack {
                                 Text("Continue to app")
@@ -306,6 +325,8 @@ struct StartingView5: View {
 
 #Preview {
     StartingView1(persistUse: .constant(false),
+                  oldTime: .constant(Date()),
+                  newTime: .constant(Date()),
                   userName: .constant("Test User"),
                   userEmail: .constant("test@icloud.com"))
 }
