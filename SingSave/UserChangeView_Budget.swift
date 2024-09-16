@@ -20,7 +20,7 @@ struct UserChangeView_Budget: View {
         List {
             Text("Change Your Budget:")
                 .bold()
-            TextField("Type a valid number", text: $changeBudget)
+            TextField("Type a valid value", text: $changeBudget)
                 .keyboardType(.decimalPad)
             Button("Change Budget") {
                 monthlyUseGoal = Double(changeBudget) ?? 1000
@@ -43,7 +43,7 @@ struct UserChangeView_Save: View {
         List {
             Text("Change Your Budget:")
                 .bold()
-            TextField("Type a valid number", text: $changeSave)
+            TextField("Type a valid value", text: $changeSave)
                 .keyboardType(.decimalPad)
             Button("Change Budget") {
                 monthlyUseGoal = Double(changeSave) ?? 200

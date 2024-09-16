@@ -10,7 +10,7 @@ import SwiftUI
 struct ExpenditureView_Add: View {
     
     @State var tempSpendText = ""
-    @State var tempSpendValue = 1.0
+    @State var tempSpendValue = ""
     @State var tempDate = Date()
     
     @Binding var spendLogs_String: [String]
@@ -26,34 +26,20 @@ struct ExpenditureView_Add: View {
             Form {
                 TextField("Enter Expenditure", text: $tempSpendText)
                 VStack {
-                    HStack {
-                        Text("Spend Amount: ")
-                            .bold()
-                        Text("$\(tempSpendValue, specifier: "%.2f")")
-                        Spacer()
-                    }
-                    Slider(value: $tempSpendValue, in: 1...400, step: 0.1)
+                    Text("Spend Amount: ")
+                        .bold()
+                    TextField("Type a valid value", text: $tempSpendValue)
+                        .keyboardType(.decimalPad)
                 }
                 DatePicker("", selection: $tempDate, displayedComponents: .date)
                     .datePickerStyle(.graphical)
-            }
-            Button {
-                spendLogs_Value.append(tempSpendValue)
-                spendLogs_Date.append(tempDate)
-                spendLogs_String.append(tempSpendText)
-                monthlyUsed += tempSpendValue
-                dismiss()
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .frame(width: 360, height: 70)
-                        .foregroundStyle(.blue)
-                    Text("Add To Expenditures +")
-                        .bold()
-                        .foregroundStyle(.white)
-                        .font(.title)
+                Button("Add To Savings") {
+                    spendLogs_Value.append(Double(tempSpendValue)!)
+                    spendLogs_Date.append(tempDate)
+                    spendLogs_String.append(tempSpendText)
+                    monthlyUsed += Double(tempSpendValue)!
+                    dismiss()
                 }
-                .padding()
             }
         }
     }

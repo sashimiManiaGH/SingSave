@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SaveView_Add: View {
     
-    @State var tempSaveValue = 1.0
+    @State var tempSaveValue = ""
     @State var tempDate = Date()
     
     @Binding var saveLogs_Value: [Double]
@@ -22,33 +22,20 @@ struct SaveView_Add: View {
         VStack {
             Form {
                 VStack {
-                    HStack {
-                        Text("Save Amount: ")
+                    Text("New Saved Amount: ")
                             .bold()
-                        Text("$\(tempSaveValue, specifier: "%.2f")")
-                        Spacer()
+                    TextField("Type a valid value", text: $tempSaveValue)
+                        .keyboardType(.decimalPad)
+                    Button("Add To Savings") {
+                        saveLogs_Value.append(Double(tempSaveValue)!)
+                        saveLogs_Date.append(tempDate)
+                        saveLogs_total += Double(tempSaveValue)!
+                        dismiss()
+                        dismiss()
                     }
-                    Slider(value: $tempSaveValue, in: 1...400, step: 0.1)
                 }
                 DatePicker("", selection: $tempDate, displayedComponents: .date)
                     .datePickerStyle(.graphical)
-            }
-            Button {
-                saveLogs_Value.append(round(tempSaveValue * 100) / 100.0)
-                saveLogs_Date.append(tempDate)
-                saveLogs_total += tempSaveValue
-                dismiss()
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .frame(width: 360, height: 70)
-                        .foregroundStyle(.blue)
-                    Text("Add To Savings +")
-                        .bold()
-                        .foregroundStyle(.white)
-                        .font(.title)
-                }
-                .padding()
             }
         }
     }
