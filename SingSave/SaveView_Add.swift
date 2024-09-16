@@ -22,7 +22,7 @@ struct SaveView_Add: View {
         VStack {
             Form {
                 VStack {
-                    Text("New Saved Amount: ")
+                    Text("New Savings Amount: ")
                             .bold()
                     TextField("Type a valid value", text: $tempSaveValue)
                         .keyboardType(.decimalPad)
@@ -30,7 +30,6 @@ struct SaveView_Add: View {
                         saveLogs_Value.append(Double(tempSaveValue)!)
                         saveLogs_Date.append(tempDate)
                         saveLogs_total += Double(tempSaveValue)!
-                        dismiss()
                         dismiss()
                     }
                 }

@@ -33,7 +33,7 @@ struct ExpenditureView_Add: View {
                 }
                 DatePicker("", selection: $tempDate, displayedComponents: .date)
                     .datePickerStyle(.graphical)
-                Button("Add To Savings") {
+                Button("Add To Expenditures") {
                     spendLogs_Value.append(Double(tempSpendValue)!)
                     spendLogs_Date.append(tempDate)
                     spendLogs_String.append(tempSpendText)
