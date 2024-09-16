@@ -1,6 +1,15 @@
 {
-  "originHash" : "b9d55856d161a2f7f4d012272acdd3dc3cee5f15b8317273bbf7ae192d7a65d9",
+  "originHash" : "bac0884d7c88ef0fbe1d52776e0c0768f7ccaf892fa69f56367ddb9d0db3e279",
   "pins" : [
+    {
+      "identity" : "datasave",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jay-lchicken/DataSave",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5be36a93d56d926faf3b0b02f5d37b691047982e"
+      }
+    },
     {
       "identity" : "swiftpersistence",
       "kind" : "remoteSourceControl",

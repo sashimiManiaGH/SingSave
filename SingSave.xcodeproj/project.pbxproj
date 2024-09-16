@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		672837DF2C98F358007572CC /* DataSave in Frameworks */ = {isa = PBXBuildFile; productRef = 672837DE2C98F358007572CC /* DataSave */; };
 		67337A622C9452F60095D8C8 /* SwiftPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 67337A612C9452F60095D8C8 /* SwiftPersistence */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67337A622C9452F60095D8C8 /* SwiftPersistence in Frameworks */,
+				672837DF2C98F358007572CC /* DataSave in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +73,7 @@
 			name = SingSave;
 			packageProductDependencies = (
 				67337A612C9452F60095D8C8 /* SwiftPersistence */,
+				672837DE2C98F358007572CC /* DataSave */,
 			);
 			productName = SingSave;
 			productReference = 67337A4F2C9451730095D8C8 /* SingSave.app */;
@@ -102,6 +105,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				67337A602C9452F60095D8C8 /* XCRemoteSwiftPackageReference "SwiftPersistence" */,
+				672837DD2C98F358007572CC /* XCRemoteSwiftPackageReference "DataSave" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 67337A502C9451730095D8C8 /* Products */;
@@ -333,6 +337,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		672837DD2C98F358007572CC /* XCRemoteSwiftPackageReference "DataSave" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jay-lchicken/DataSave";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		67337A602C9452F60095D8C8 /* XCRemoteSwiftPackageReference "SwiftPersistence" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/cheesetan/SwiftPersistence";
@@ -344,6 +356,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		672837DE2C98F358007572CC /* DataSave */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 672837DD2C98F358007572CC /* XCRemoteSwiftPackageReference "DataSave" */;
+			productName = DataSave;
+		};
 		67337A612C9452F60095D8C8 /* SwiftPersistence */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 67337A602C9452F60095D8C8 /* XCRemoteSwiftPackageReference "SwiftPersistence" */;

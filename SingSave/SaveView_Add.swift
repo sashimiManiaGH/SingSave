@@ -21,20 +21,18 @@ struct SaveView_Add: View {
     var body: some View {
         VStack {
             Form {
-                VStack {
-                    Text("New Savings Amount: ")
-                            .bold()
-                    TextField("Type a valid value", text: $tempSaveValue)
-                        .keyboardType(.decimalPad)
-                    Button("Add To Savings") {
-                        saveLogs_Value.append(Double(tempSaveValue)!)
-                        saveLogs_Date.append(tempDate)
-                        saveLogs_total += Double(tempSaveValue)!
-                        dismiss()
-                    }
-                }
+                Text("New Savings Amount: ")
+                    .bold()
+                TextField("Type a valid value", text: $tempSaveValue)
+                    .keyboardType(.decimalPad)
                 DatePicker("", selection: $tempDate, displayedComponents: .date)
                     .datePickerStyle(.graphical)
+                Button("Add To Savings") {
+                    saveLogs_Value.append(Double(tempSaveValue)!)
+                    saveLogs_Date.append(tempDate)
+                    saveLogs_total += Double(tempSaveValue)!
+                    dismiss()
+                }
             }
         }
     }
