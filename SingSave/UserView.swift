@@ -89,7 +89,7 @@ struct UserView: View {
                     }
                     VStack {
                         HStack {
-                            Text("Monthly Savings Goa: $\(saveGoals, specifier: "%.2f")")
+                            Text("Monthly Savings Goal: $\(saveGoals, specifier: "%.2f")")
                                 .bold()
                             Spacer()
                             Button {
