@@ -41,7 +41,7 @@ struct UserChangeView_Save: View {
     
     var body: some View {
         List {
-            Text("Change Your Budget:")
+            Text("Change Your Goal:")
                 .bold()
             TextField("Type a valid value", text: $changeSave)
                 .keyboardType(.decimalPad)
