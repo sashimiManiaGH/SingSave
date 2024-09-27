@@ -46,7 +46,7 @@ struct UserChangeView_Save: View {
             TextField("Type a valid value", text: $changeSave)
                 .keyboardType(.decimalPad)
             Button("Change Goal") {
-                monthlyUseGoal = Double(changeSave) ?? 200
+                saveGoals = Double(changeSave) ?? 200
                 dismiss()
             }
         }
